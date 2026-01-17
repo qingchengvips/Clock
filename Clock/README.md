@@ -1,149 +1,149 @@
-һ���ִ�����ʱ�ӣ���������ʱ��ͬ�����ܺ������Ķ���Ч����֧���Զ�����ʽ����Ӧʽ��ơ�
+一个现代化的时钟，具有网络时间同步功能和流畅的动画效果，支持自定义样式和响应式设计。
+![Clock](https://github.com/qingchengvips/Clock/blob/main/Clock/Clock.webp?raw=true)
+## 功能特性
 
-## ��������
+### 核心功能
+-  **实时时钟显示**：使用HTML5和CSS3实现的精美模拟时钟，带有平滑的指针动画
+-  **网络时间同步**：通过PHP API获取精确的网络时间，确保时钟的准确性
+-  **自动DOM管理**：智能检测并创建缺失的DOM元素，确保时钟结构完整
+-  **初始化重试机制**：当DOM未完全加载时，自动重试初始化（最多10次）
 
-### ���Ĺ���
-- ? **ʵʱʱ����ʾ**��ʹ��HTML5��CSS3ʵ�ֵľ���ģ��ʱ�ӣ�����ƽ����ָ�붯��
-- ? **����ʱ��ͬ��**��ͨ��PHP API��ȡ��ȷ������ʱ�䣬ȷ��ʱ�ӵ�׼ȷ��
-- ? **�Զ�DOM����**�����ܼ�Ⲣ����ȱʧ��DOMԪ�أ�ȷ��ʱ�ӽṹ����
-- ? **��ʼ�����Ի���**����DOMδ��ȫ����ʱ���Զ����Գ�ʼ�������10�Σ�
+### 技术特点
+-  **响应式设计**：适配不同屏幕尺寸，在移动设备上自动隐藏
+-  **高性能动画**：使用`requestAnimationFrame`实现流畅的指针动画
+-  **错误处理**：完善的错误捕获和降级机制，确保时钟在各种情况下都能正常运行
+-  **易集成**：可轻松嵌入到任何网站中，只需添加相关文件和少量HTML代码
 
-### �����ص�
-- ? **��Ӧʽ���**�����䲻ͬ��Ļ�ߴ磬���ƶ��豸���Զ�����
-- ?? **�����ܶ���**��ʹ��`requestAnimationFrame`ʵ��������ָ�붯��
-- ? **������**�����ƵĴ��󲶻�ͽ������ƣ�ȷ��ʱ���ڸ�������¶�����������
-- ? **�׼���**��������Ƕ�뵽�κ���վ�У�ֻ����������ļ�������HTML����
-
-## ��Ŀ�ṹ
+## 项目结构
 
 ```
 clock/
-������ index.html           # ��ҳ���ļ�������ʱ��HTML�ṹ
-������ js/
-��   ������ clock.js         # ����JavaScript�߼���ʵ��ʱ�ӹ��ܺ�����ͬ��
-������ css/
-��   ������ styles.css       # ʱ����ʽ����������ۺͶ���
-������ api/
-��   ������ time.php         # ����ʱ��ͬ��API
-��   ������ time_api.log     # API��־�ļ����Զ����ɣ�
-������ README.md            # ��Ŀ˵���ĵ�
+├── index.html           # 主页面文件，包含时钟HTML结构
+├── js/
+│   └── clock.js         # 核心JavaScript逻辑，实现时钟功能和网络同步
+├── css/
+│   └── styles.css       # 时钟样式表，定义外观和动画
+├── api/
+│   ├── time.php         # 网络时间同步API
+│   └── time_api.log     # API日志文件（自动生成）
+└── README.md            # 项目说明文档
 ```
 
-## ��װ��ʹ��
+## 安装与使用
 
-### ����Ҫ��
-- ����HTML/CSS/JavaScript֧�֣������ִ��������
-- PHP 5.6+����������ʱ��ͬ��API��
-- jQuery 3.6.0+������DOM������
+### 环境要求
+- 基本HTML/CSS/JavaScript支持（所有现代浏览器）
+- PHP 5.6+（用于网络时间同步API）
+- jQuery 3.6.0+（用于DOM操作）
 
-### ��װ����
-1. ���ػ��¡��Ŀ�ļ�������Web������Ŀ¼
-2. ȷ��PHP��������ȷ����
-3. ������Ҫ�޸�API���ã������ģ�
+### 安装步骤
+1. 下载或克隆项目文件到您的Web服务器目录
+2. 确保PHP环境已正确配置
+3. 根据需要修改API配置（见下文）
 
-### ʹ�÷���
-1. ֱ����������д�`index.html`�ļ�
-2. ʱ�ӽ��Զ���ʼ������ʾ��ǰʱ��
-3. �������������ʱ��ͬ����ʱ�ӽ��Զ�У׼ʱ��
+### 使用方法
+1. 直接在浏览器中打开`index.html`文件
+2. 时钟将自动初始化并显示当前时间
+3. 如果配置了网络时间同步，时钟将自动校准时间
 
-## ����˵��
+## 配置说明
 
-### ����ʱ��ͬ������
-�༭`api/time.php`�ļ���
+### 网络时间同步配置
+编辑`api/time.php`文件：
 
 ```php
-// �����������б�������������
+// 允许的域名列表（生产环境）
 $allowed_domains = array(
-    // 'yourdomain.com',  // ȡ��ע�Ͳ�������������
+    // 'yourdomain.com',  // 取消注释并添加您的域名
     // 'www.yourdomain.com'
 );
 
-// ʱ��У׼API����
+// 时间校准API配置
 $time_api_config = array(
-    'url' => 'https://cn.apihz.cn/api/time/getapi.php?id=���ID&key=���KEY&type=2',    // �滻Ϊ���Լ���API
-    // 'API����' => 'https://www.apihz.cn/',
+    'url' => 'https://cn.apihz.cn/api/time/getapi.phpid=你的ID&key=你的KEY&type=2',    // 替换为你自己的API
+    // 'API申请' => 'https://www.apihz.cn/',
     'timeout' => 3,
-    'cache_duration' => 300, // ����ʱ�䣨�룩
+    'cache_duration' => 300, // 缓存时间（秒）
 );
 ```
 
-### ��ʽ�Զ���
-�༭`css/styles.css`�ļ��������Զ���ʱ�ӵ���ۣ�
+### 样式自定义
+编辑`css/styles.css`文件，可以自定义时钟的外观：
 
 ```css
-/* ʱ������ */
+/* 时钟容器 */
 #utility-clock {
-    /* ���������Զ�����ʽ */
+    /* 添加您的自定义样式 */
 }
 
-/* ָ����ʽ */
+/* 指针样式 */
 .hour {
-    /* ʱ����ʽ */
+    /* 时针样式 */
 }
 
 .minute {
-    /* ������ʽ */
+    /* 分针样式 */
 }
 
 .second {
-    /* ������ʽ */
+    /* 秒针样式 */
 }
 ```
 
-## ���ļ���ʵ��
+## 核心技术实现
 
-### ʱ�ӳ�ʼ������
-1. ҳ�����ʱ���Զ�����`initClock()`����
-2. ���jQuery��DOMԪ���Ƿ����
-3. ���Ԫ��ȱʧ�����Զ�̬����ʱ�ӽṹ
-4. ʹ��`requestAnimationFrame`����ʱ�Ӷ���
-5. ��������ʱ��ͬ��API����ʱ��У׼
+### 时钟初始化流程
+1. 页面加载时，自动调用`initClock()`函数
+2. 检测jQuery和DOM元素是否可用
+3. 如果元素缺失，尝试动态创建时钟结构
+4. 使用`requestAnimationFrame`启动时钟动画
+5. 调用网络时间同步API进行时间校准
 
-### ����ʱ��ͬ������
-1. ͨ��`syncNetworkTime()`��������AJAX����`api/time.php`
-2. ��ȡ����ʱ�������뱾��ʱ���ƫ����
-3. ʹ��ƫ����У׼����ʱ����ʾ
-4. �������ͬ��ʧ�ܣ��Զ�����ʹ�ñ��ظ߾���ʱ��
+### 网络时间同步机制
+1. 通过`syncNetworkTime()`函数发起AJAX请求到`api/time.php`
+2. 获取网络时间后计算与本地时间的偏移量
+3. 使用偏移量校准本地时钟显示
+4. 如果网络同步失败，自动降级使用本地高精度时间
 
-### �������뽵������
-- DOMδ������ɣ��Զ����Գ�ʼ�������10�Σ�
-- jQuery�����ã���ʾ������Ϣ
-- ����ʱ��ͬ��ʧ�ܣ�ʹ�ñ��ظ߾���ʱ��
-- �������֧��`requestAnimationFrame`��ʹ��`setTimeout`���
+### 错误处理与降级策略
+- DOM未加载完成：自动重试初始化（最多10次）
+- jQuery不可用：提示错误信息
+- 网络时间同步失败：使用本地高精度时间
+- 浏览器不支持`requestAnimationFrame`：使用`setTimeout`替代
 
-## �����������
+## 浏览器兼容性
 
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
 - Edge 79+
-- IE 11�����ֹ��ܿ������ޣ�
+- IE 11（部分功能可能受限）
 
-## ����֤
+## 许可证
 
-MIT����֤ - ���������ڸ��˺���ҵ��Ŀ��
+MIT许可证 - 可自由用于个人和商业项目。
 
-## ע������
+## 注意事项
 
-1. ����ʱ��ͬ��������ҪPHP����֧��
-2. Ĭ��ʹ���ⲿʱ��API���������滻Ϊ�Լ���API
-3. �����������У���ȷ����ȷ����`allowed_domains`����
-4. �ƶ��豸��ʱ�ӻ��Զ����أ�������ʾ���޸�`clock.js`�еļ���߼�
+1. 网络时间同步功能需要PHP环境支持
+2. 默认使用外部时间API，您可以替换为自己的API
+3. 在生产环境中，请确保正确配置`allowed_domains`数组
+4. 移动设备上时钟会自动隐藏，如需显示可修改`clock.js`中的检测逻辑
 
-## ������־
+## 更新日志
 
 ### v1.0.0
-- ��ʼ�汾����
-- ʵ�ֻ�����ʱ����ʾ�Ͷ�������
-- ��������ʱ��ͬ������
-- ֧����Ӧʽ���
-- ���ƴ���������
+- 初始版本发布
+- 实现基本的时钟显示和动画功能
+- 添加网络时间同步功能
+- 支持响应式设计
+- 完善错误处理机制
 
-## ����
+## 贡献
 
-��ӭ�ύIssue��Pull Request�������Ľ������Ŀ��
+欢迎提交Issue和Pull Request来帮助改进这个项目！
 
-## ��ϵ��ʽ
+## 联系方式
 https://qingcheng.club
 
-����������飬��ͨ��GitHub Issues�����
+如有问题或建议，请通过GitHub Issues提出。
